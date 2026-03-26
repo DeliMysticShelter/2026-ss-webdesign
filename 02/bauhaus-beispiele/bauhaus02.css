@@ -1,0 +1,84 @@
+:root {
+    /* Transparente Bauhaus-Farben (Alpha-Wert 0.7) */
+    --red-alpha: rgba(220, 50, 47, 0.7);
+    --blue-alpha: rgba(38, 139, 210, 0.7);
+    --yellow-alpha: rgba(245, 200, 20, 0.7);
+    --black: #111;
+    --grid-thickness: 4px; /* Dicke der Gitterlinien */
+}
+
+body {
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.poster {
+    position: relative;
+    width: 800px;
+    height: 550px;
+    background-color: white;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    overflow: hidden; /* Wichtig: Schneidet alles ab, was über den Rand ragt */
+}
+
+/* --- 1. Das schwarze Gitter (Ebene 1) --- */
+.grid-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 10; /* Liegt über den Farben, aber unter dem Text */
+    pointer-events: none; /* Klicks gehen durch */
+}
+
+.h-line, .v-line {
+    position: absolute;
+    background-color: var(--black);
+}
+.h-line { width: 100%; height: var(--grid-thickness); transform: translateY(-50%); }
+.v-line { height: 100%; width: var(--grid-thickness); transform: translateX(-50%); }
+
+
+/* --- 2. Die Farbflächen (Ebene 0) --- */
+.color-rect {
+    position: absolute;
+    z-index: 1; /* Unterste Ebene */
+}
+.red { background-color: var(--red-alpha); }
+.blue { background-color: var(--blue-alpha); }
+.yellow { background-color: var(--yellow-alpha); }
+
+
+/* --- 3. Die Typografie (Ebene 2) --- */
+.text-grid {
+    position: absolute;
+    /* Positionierung des gesamten Textblocks */
+    top: 41.6%; left: 14.3%; width: 71.4%; height: 33.3%;
+    z-index: 20; /* Ganz oben */
+
+    /* Ein eigenes Grid für die Buchstaben */
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.letter-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    font-family: 'Arial Black', 'Helvetica Neue', sans-serif;
+    font-size: 52px;
+    width: 80px;
+    font-weight: 900;
+    color: var(--black);
+    line-height: 1;
+    
+    /* Trick für den Look: Weißer Hintergrund + schwarzer Rand */
+    background-color: white;
+    border: 4px solid var(--black);
+    /* Negativer Margin lässt Ränder überlappen für einen sauberen Look */
+    margin: -2px; 
+}

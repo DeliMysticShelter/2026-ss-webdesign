@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Präsenzaufgabe 2: Chaos-Beseitigung</title>
+    <style>
+        /* ==========================================================================
+           CSS-CHAOS:
+           Hier ist alles kaputt! Repariere das Layout NUR durch das Anpassen 
+           und Hinzufügen von CSS in diesem Block.
+           Das HTML im <body> darf NICHT verändert werden!
+           ========================================================================== */
+
+        body {
+            font-family: sans-serif;
+            background-color: #f4f4f9;
+            margin: 20px;
+        }
+
+        .container {
+            background-color: #ddd;
+            width: 100%;
+            /* PROBLEM 1: Ohne box-sizing: border-box sprengen padding und border die 100% Breite.
+               Der Container ragt rechts aus dem Bildschirmrand heraus! */
+            padding: 40px;
+            border: 10px solid #333;
+        }
+
+        .text-block {
+            background-color: #ffcccc;
+            border: 2px solid red;
+            /* PROBLEM 2: Diese Textblöcke fließen ineinander, weil sie als <span> 
+               standardmäßig "inline" sind. Sie brauchen Block-Verhalten und Außenabstand! */
+        }
+
+        .button {
+            background-color: #c026d3;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            /* PROBLEM 3: Diese Buttons sollen nebeneinander stehen, sind als <div> 
+               aber standardmäßig "block"-Elemente. Sie brauchen Innen- und Außenabstände! */
+        }
+
+        .secret {
+            background-color: yellow;
+            color: red;
+            font-size: 24px;
+            font-weight: bold;
+            border: 5px dashed red;
+            /* PROBLEM 4: Dieses Element soll komplett aus dem Layout verschwinden! */
+        }
+
+        /* --- DEIN CODE STARTET HIER --- */
+
+        /* 1. Füge den universellen Selektor (*) für border-box hinzu */
+
+
+        /* 2. Repariere .text-block (Tipp: display, margin, padding) */
+
+
+        /* 3. Repariere .button (Tipp: display, margin, padding) */
+
+
+        /* 4. Verstecke .secret (Tipp: display) */
+
+
+    </style>
+</head>
+<body>
+
+    <h1>Willkommen im Layout-Chaos!</h1>
+    <p>Deine Aufgabe: Bändige diese Elemente nur mit CSS.</p>
+
+    <div class="container">
+        <span class="text-block">
+            <strong>Textblock 1:</strong> Ich bin eigentlich ein Absatz. Aber weil mein HTML-Tag ein Span-Element ist, quetsche ich mich einfach direkt neben den nächsten Text. Das sieht furchtbar aus, ist schwer zu lesen und macht überhaupt keinen Sinn.
+        </span>
+
+        <span class="text-block">
+            <strong>Textblock 2:</strong> Und ich klebe direkt an Textblock 1! Bitte gib uns ein eigenes Display-Verhalten und etwas Außenabstand (Margin), damit wir wie vernünftige Textblöcke untereinander stehen.
+        </span>
+
+        <div class="secret">
+            🛑 GEHEIMNIS! 🛑 Dieser Kasten darf auf der fertigen Website überhaupt nicht gerendert werden. Er darf auch keinen unsichtbaren Platz wegnehmen. Verstecke mich!
+        </div>
+
+        <div class="button">Klick mich (Button 1)</div>
+        <div class="button">Nein, klick mich! (Button 2)</div>
+        <div class="button">Ich bin auch noch da! (Button 3)</div>
+    </div>
+
+</body>
+</html>

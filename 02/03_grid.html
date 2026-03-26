@@ -1,0 +1,70 @@
+    <!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8px Grid Dashboard</title>
+    <style>
+        /* Grund-Reset */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: sans-serif;
+            background-color: #f0f0f0;
+            padding: 16px; /* 8px x 2 */
+        }
+
+        /* Das Grid-System */
+        .grid-container {
+            display: grid;
+            /* Sidebar: 250px | Content: Rest */
+            grid-template-columns: 250px 1fr;
+            /* Header: auto | Main: min 400px | Footer: auto */
+            grid-template-rows: auto minmax(400px, 1fr) auto;
+            
+            gap: 16px; /* 8px x 2 */
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Platzierung der Elemente */
+        header, footer {
+
+        }
+
+        aside {
+
+        }
+
+        main {
+
+        }
+    </style>
+</head>
+<body>
+
+    <div class="grid-container">
+        <header>
+            <h2>Dashboard Header</h2>
+            <p> Header</p>
+        </header>
+
+        <aside>
+            <h3>Navigation</h3>
+            <p>Navigation</p>
+        </aside>
+
+        <main>
+            <h1>Main Content</h1>
+            <p>Hier landen die primären Dashboard-Widgets.</p>
+            <p>Widget 1</p>
+            <p>Widget 2</p>
+        </main>
+
+        <footer>
+            <p>Dashboard Footer</p>
+        </footer>
+    </div>
+
+</body>
+</html>
