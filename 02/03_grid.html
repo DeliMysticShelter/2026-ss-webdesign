@@ -28,42 +28,64 @@
         }
 
         /* Platzierung der Elemente */
-        header, footer {
+        .header {
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        .footer {
+            grid-column: -1;
+            grid-row: 3;
+        }
+
+        .aside {
+            grid-row: 2;
+            grid-colum: 1;
+            margin:40px;
+            padding:40px;
 
         }
 
-        aside {
-
-        }
-
-        main {
-
+        .main {
+            grid-row: 2;
+            grid-colum: 2;
+            margin:40px;
+            padding:40px;
         }
     </style>
 </head>
 <body>
 
     <div class="grid-container">
-        <header>
-            <h2>Dashboard Header</h2>
-            <p> Header</p>
-        </header>
 
-        <aside>
-            <h3>Navigation</h3>
-            <p>Navigation</p>
-        </aside>
+        <div class="header">
+            <header>
+                <h2>Dashboard Header</h2>
+                <p> Header</p>
+            </header>
+        </div>
+        
+        <div class ="aside">
+            <aside>
+                <h3>Navigation</h3>
+                <p>Navigation</p>
+            </aside>
+        </div>
 
-        <main>
-            <h1>Main Content</h1>
-            <p>Hier landen die primären Dashboard-Widgets.</p>
-            <p>Widget 1</p>
-            <p>Widget 2</p>
-        </main>
+        <div class ="main">
+            <main>
+                <h1>Main Content</h1>
+                <p>Hier landen die primären Dashboard-Widgets.</p>
+                <p>Widget 1</p>
+                <p>Widget 2</p>
+            </main>
+        </div>
 
-        <footer>
-            <p>Dashboard Footer</p>
-        </footer>
+        <div class ="footer">
+            <footer>
+                <p>Dashboard Footer</p>
+            </footer>
+        </div>
     </div>
 
 </body>

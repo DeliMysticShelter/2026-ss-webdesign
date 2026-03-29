@@ -56,15 +56,29 @@
 
         /* 1. Füge den universellen Selektor (*) für border-box hinzu */
 
+        * { 
+            box-sizing:border-box }
 
         /* 2. Repariere .text-block (Tipp: display, margin, padding) */
 
-
+        .text-block {
+            display: block;
+            padding: 8px;
+            margin: 16px ;
+            
+        }
+            
         /* 3. Repariere .button (Tipp: display, margin, padding) */
 
-
+        .button {
+            display:inline;
+            margin:32px;
+            padding: 8px;
+        }
         /* 4. Verstecke .secret (Tipp: display) */
-
+        .secret {
+            display:none;
+        }
 
     </style>
 </head>
