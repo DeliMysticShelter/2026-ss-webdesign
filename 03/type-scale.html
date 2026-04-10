@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <title>Type Scale Calculator</title>
     <style>
         /* ============================================================
@@ -20,15 +26,38 @@
            ============================================================ */
 
         :root {
-            
+            --base: 16px; 
+            --ratio: 1.25;
+            --h6: calc(var(--base) * var(--ratio));
+            --h5: calc(var(--h6) * var(--ratio));
+            --h4: calc(var(--h5) * var(--ratio));
+            --h3: calc(var(--h4) * var(--ratio));
+            --h2: calc(var(--h3) * var(--ratio));
+            --h1: calc(var(--h2) * var(--ratio));
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * { box-sizing: border-box; margin: 0; padding: 0;}
+        
+        .poiret-one-regular {
+        font-family: "Poiret One", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        }
+
+        .playfair-display-uniquifier {
+        font-family: "Playfair Display", serif;
+        font-optical-sizing: auto;
+        font-weight: weight;
+        font-style: normal;
+        }
+
 
         body {
             font-family: Georgia, serif;
             background: #faf9f7;
             color: #1a1a1a;
+            font-size: var(--base);
+ 
         }
 
         .page { 
@@ -37,27 +66,30 @@
         }
 
         h1 {
-            
+            font-size: var(--h1);
+            line-height: 1.0;
+            letter-spacing: -2px;
         }
 
         h2 { 
-
+            font-size: var(--h2);
          }
         h3 { 
-            
+            font-size: var(--h3);
          }
         h4 {
-            
+            font-size: var(--h4);
          }
         h5 { 
-
+            font-size: var(--h5);
          }
         h6 { 
-
+            font-size: var(--h6);
          }
 
         p {
-            
+            line-height: 1.5;
+            font-family: "Playfair Display", serif;
         }
     </style>
 </head>
@@ -65,35 +97,35 @@
 
     <div class="page">
 
-        <h1>Harmonische Proportionen durch mathematische Skalen</h1>
-        <h2>Was ist eine Type Scale?</h2>
+        <h1 class="poiret-one-regular">Harmonische Proportionen durch mathematische Skalen</h1>
+        <h2 class="poiret-one-regular">Was ist eine Type Scale?</h2>
         <p>
             Eine Type Scale ist ein System aufeinander abgestimmter Schriftgrößen,
             die durch einen festen Faktor miteinander verbunden sind. Je größer
             der Faktor, desto dramatischer der Größenunterschied zwischen den Stufen.
         </p>
 
-        <h3>CSS Custom Properties</h3>
+        <h3 class="poiret-one-regular">CSS Custom Properties</h3>
         <p>
             CSS-Variablen werden im <code>:root</code>-Selektor definiert und stehen
             im gesamten Dokument zur Verfügung. In Kombination mit <code>calc()</code>
             lässt sich so eine vollständig variable Type Scale aufbauen.
         </p>
 
-        <h4>Vorteile des Ansatzes</h4>
+        <h4 class="poiret-one-regular">Vorteile des Ansatzes</h4>
         <p>
             Ändert man nur <code>--base</code> oder <code>--ratio</code>,
             passen sich alle Schriftgrößen automatisch an.
         </p>
 
-        <h5>Micro-Typography</h5>
+        <h5 class="poiret-one-regular">Micro-Typography</h5>
         <p>
             Große Überschriften wirken kompakter mit <code>line-height</code> nahe 1.0
             und leicht negativem <code>letter-spacing</code>. Fließtext benötigt
             mindestens 1.4–1.6 für komfortable Lesbarkeit.
         </p>
 
-        <h6>Hintergrundnotiz</h6>
+        <h6 class="poiret-one-regular">Hintergrundnotiz</h6>
         <p>
             Das Verhältnis 1.25 (Major Third) erzeugt deutlich sichtbare,
             aber nicht übertriebene Größenunterschiede – ideal für Webprojekte.
