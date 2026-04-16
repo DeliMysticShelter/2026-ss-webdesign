@@ -109,6 +109,26 @@
     </div>
 
     <script>
+
+        function add(){
+            const input = document.getElementById("taskInput");
+            const list = document.getElementById("taskList");
+            
+            const newTask = input.value;
+
+            if (newTask){
+
+            const newItem = document.createElement("li")
+            newItem.innerHTML = newTask
+
+            list.append(newItem)
+            }
+            
+            input.value = null
+        }
+        const btn = document.getElementById("addBtn")
+            
+        btn.addEventListener("click", add)
         // ============================================================
         // EUER CODE HIER:
         //
