@@ -18,6 +18,8 @@ body {
 
 .btn {
   position: absolute;
+  left: 0;
+  top:0;
   transition: left 0.3s cubic-bezier(0.25, 1, 0.5, 1),
               top 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
