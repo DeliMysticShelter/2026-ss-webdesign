@@ -89,6 +89,7 @@
             font-smooth: never;
             -webkit-font-smoothing: none;
             transition: all 0.1s;
+            cursor: pointer;
         }
 
         .random-btn:hover {
@@ -146,6 +147,7 @@
         line-height: 1.2;
         overflow: auto;
     }
+
 @keyframes popupSpawn {
     0% { transform: scale(0.7); opacity: 0; }
     100% { transform: scale(1); opacity: 1; }
@@ -180,7 +182,7 @@
     </div>
 
     <script>
-// 1. Schreibeffekt
+
 const el = document.querySelector('.typing');
 const msg = 'Vielleicht ist sie ja hier irgendwo, whatever.';
 let i = 0;
@@ -208,31 +210,59 @@ function initialisiereSeite() {
 
     const texte = ['Vielleicht hier?', 'Oder hier?', 'Hier könnte sie sein!', 'Hier riechts nach Website', 'Ich hab was gehört!'];
     
+
+    const mainContent = document.getElementById('main-content');
+    const rect = mainContent.getBoundingClientRect();
+    
+
+    const puffer = 40; 
+    const sperrXStart = rect.left - puffer;
+    const sperrXEnd = rect.right + puffer;
+    const sperrYStart = rect.top - puffer;
+    const sperrYEnd = rect.bottom + puffer;
+
     for (let b = 0; b < 40; b++) {
         const btn = document.createElement('button');
         btn.className = 'random-btn';
         btn.textContent = texte[Math.floor(Math.random() * texte.length)];
+        
+        btn.style.visibility = 'hidden';
+        document.body.appendChild(btn);
+        const btnWidth = btn.offsetWidth || 150;
+        const btnHeight = btn.offsetHeight || 50;
+        btn.style.visibility = 'visible';
 
-        let xPos, yPos, inSperrzone = true;
-        while (inSperrzone) {
-            xPos = Math.random() * 90;
-            yPos = Math.random() * 90;
-            if (xPos > 25 && xPos < 70 && yPos > 20 && yPos < 75) { inSperrzone = true; } else { inSperrzone = false; }
+        let pxX = 0, pxY = 0;
+        let inSperrzone = true;
+        let versuche = 0;
+
+        while (inSperrzone && versuche < 150) {
+            pxX = Math.random() * (window.innerWidth - btnWidth - 40) + 20;
+            pxY = Math.random() * (window.innerHeight - btnHeight - 40) + 20;
+
+            const schneidetX = (pxX + btnWidth > sperrXStart && pxX < sperrXEnd);
+            const schneidetY = (pxY + btnHeight > sperrYStart && pxY < sperrYEnd);
+
+            if (!(schneidetX && schneidetY)) {
+                inSperrzone = false;
+            }
+            versuche++;
         }
 
-        btn.style.left = `${xPos}%`;
-        btn.style.top = `${yPos}%`;
+   
+        btn.style.left = `${pxX}px`;
+        btn.style.top = `${pxY}px`;
+        
         btn.addEventListener('click', (e) => {
             btn.remove();
             erzeugePopup(e.clientX, e.clientY);
         });
-        document.body.appendChild(btn);
     }
 }
 
 function erzeugePopup(klickX, klickY) {
-    const farben = ['#ff0055', '#00ffcc', '#ffff00', '#b500ff', '#ffffff'];
-    const texte = ['Hier nicht', 'Hier auch nicht', 'Gibt dir etwas mehr Mühe', 'Nur mehr 404', 'Neee...', 'Your Website is in another Cast-eh, Popup!'];
+    const farben = ['#c9eed9', '#ddc9ee', '#a5d974', '#7479d9', '#eeaef6', '#f6e9a5', '#d974b8', '#74d9c9'];
+    const texte = ['Hier nicht', 'Hier auch nicht', 'Gib dir etwas mehr Mühe', 'Nur mehr 404', 'Neee...', 'Your Website is in another Castle..eh.. Popup!'];
     
     const breite = Math.floor(200 + Math.random() * 250);
     const hoehe = Math.floor(150 + Math.random() * 150);
@@ -254,15 +284,13 @@ function erzeugePopup(klickX, klickY) {
     `;
 
     popup.querySelector('.popup-close-box').addEventListener('click', () => {
-        popup.style.transform = 'scale(0.8)';
-        popup.style.opacity = '0';
-        setTimeout(() => popup.remove(), 100);
+        popup.remove();
     });
-
+    
     document.body.appendChild(popup);
 }
 
 window.addEventListener('DOMContentLoaded', initialisiereSeite);
-    </script>
+</script>
 </body>
 </html>
