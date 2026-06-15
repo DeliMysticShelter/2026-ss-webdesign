@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jacquard+12&display=swap" rel="stylesheet">
+    <title>404</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #f8c9d7;
+            color: #000;
+            font-family: "Jacquard 12", cursive;
+            font-weight: 400;
+            padding: 2rem;
+            border: 8px solid #000;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+    #main-content {
+        text-align: center;
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        max-width: 90vw;
+        padding: 2rem;
+    }
+
+    h1 {
+        font-size: clamp(6rem, 20vw, 14rem);
+        line-height: 1;
+        border-bottom: 8px solid #000;
+        padding-bottom: 1rem;
+        text-shadow: 3px 3px 0px #f8c9d7, -3px -3px 0px #f8c9d7, 3px -3px 0px #f8c9d7, -3px 3px 0px #f8c9d7;
+    }
+
+    p {
+        font-size: 4rem;
+        font-weight: 400;
+        margin-top: 2rem;
+        text-shadow: 2px 2px 0px #f8c9d7, -2px -2px 0px #f8c9d7, 2px -2px 0px #f8c9d7, -2px 2px 0px #f8c9d7;
+    }
+
+        a.main-btn {
+            color: #000;
+            display: inline-block;
+            border: 4px solid #000;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            margin-top: 1rem;
+            font-size: 2rem;
+            background: #fff;
+        }
+
+        a.main-btn:hover { background: #000; color: #fff; }
+
+        .typing {
+            margin-top: 2rem;
+            font-size: 1.5rem;
+            font-weight: 400;
+            max-width: 50ch;
+            opacity: 0.5;
+        }
+
+        .random-btn {
+            position: absolute;
+            font-family: "Jacquard 12", cursive;
+            font-size: 2rem;
+            background: #111;
+            color: #ff0055;
+            border: 4px solid #000;
+            box-shadow: 4px 4px 0px #000;
+            padding: 0.5rem 1.2rem;
+            cursor: pointer;
+            z-index: 5; 
+            image-rendering: pixelated;
+            text-shadow: 2px 2px 0px #000;
+            font-smooth: never;
+            -webkit-font-smoothing: none;
+            transition: all 0.1s;
+        }
+
+        .random-btn:hover {
+            background: #ff0055;
+            color: #000;
+            text-shadow: none;
+            box-shadow: 2px 2px 0px #000;
+            transform: translate(2px, 2px);
+        }
+
+
+    .popup-window {
+        position: absolute;
+        z-index: 20; 
+        border: 4px solid #000;
+        box-shadow: 6px 6px 0px #000;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        animation: popupSpawn 0.15s ease-out;
+    }
+    .popup-header {
+        background: #000;
+        color: #fff;
+        padding: 0.2rem 0.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 1.5rem;
+        user-select: none;
+    }
+    .popup-close-box {
+        background: #ff0055;
+        color: #000;
+        border: 2px solid #000;
+        padding: 0 5px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        cursor: pointer;
+        font-weight: bold;
+    }
+    .popup-close-box:hover { background: #fff; color: #000; }
+    .popup-body {
+        padding: 1rem;
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 1.8rem;
+        color: #000;
+        line-height: 1.2;
+        overflow: auto;
+    }
+@keyframes popupSpawn {
+    0% { transform: scale(0.7); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+        @keyframes popupSpawn {
+            0% { transform: scale(0.7); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .bg-star {
+            position: absolute;
+            z-index: 1; 
+            pointer-events: none;
+            image-rendering: pixelated;
+            animation: funkelt 3s infinite ease-in-out;
+        }
+
+        @keyframes funkelt {
+            0%, 100% { opacity: 0.05; }
+            50% { opacity: 0.6; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="main-content">
+        <h1>404</h1>
+        <p>Keine Ahnung, wenn du sie blöde Website unbedingt willst such sie doch selbst.</p>
+        <a href="/" class="main-btn">Zur Startseite</a>
+        <div class="typing"></div>
+    </div>
+
+    <script>
+// 1. Schreibeffekt
+const el = document.querySelector('.typing');
+const msg = 'Vielleicht ist sie ja hier irgendwo, whatever.';
+let i = 0;
+(function type() {
+    if (i < msg.length) { el.textContent += msg[i++]; setTimeout(type, 80); }
+})();
+
+
+function initialisiereSeite() {
+
+    const rohesSvg = "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 8 8' fill='black'><rect x='3' y='0' width='2' height='8'/><rect x='0' y='3' width='8' height='2'/><rect x='2' y='2' width='4' height='4'/></svg>";
+    const starSvg = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(rohesSvg);
+    
+    for (let s = 0; s < 50; s++) {
+        const star = document.createElement('img');
+        star.className = 'bg-star';
+        star.src = starSvg;
+        star.style.width = star.style.height = '24px';
+        star.style.left = `${Math.random() * 95}%`;
+        star.style.top = `${Math.random() * 95}%`;
+        star.style.animationDelay = `${Math.random() * 3}s`;
+        star.style.animationDuration = `${2 + Math.random() * 2}s`;
+        document.body.appendChild(star);
+    }
+
+    const texte = ['Vielleicht hier?', 'Oder hier?', 'Hier könnte sie sein!', 'Hier riechts nach Website', 'Ich hab was gehört!'];
+    
+    for (let b = 0; b < 40; b++) {
+        const btn = document.createElement('button');
+        btn.className = 'random-btn';
+        btn.textContent = texte[Math.floor(Math.random() * texte.length)];
+
+        let xPos, yPos, inSperrzone = true;
+        while (inSperrzone) {
+            xPos = Math.random() * 90;
+            yPos = Math.random() * 90;
+            if (xPos > 25 && xPos < 70 && yPos > 20 && yPos < 75) { inSperrzone = true; } else { inSperrzone = false; }
+        }
+
+        btn.style.left = `${xPos}%`;
+        btn.style.top = `${yPos}%`;
+        btn.addEventListener('click', (e) => {
+            btn.remove();
+            erzeugePopup(e.clientX, e.clientY);
+        });
+        document.body.appendChild(btn);
+    }
+}
+
+function erzeugePopup(klickX, klickY) {
+    const farben = ['#ff0055', '#00ffcc', '#ffff00', '#b500ff', '#ffffff'];
+    const texte = ['Hier nicht', 'Hier auch nicht', 'Gibt dir etwas mehr Mühe', 'Nur mehr 404', 'Neee...', 'Your Website is in another Cast-eh, Popup!'];
+    
+    const breite = Math.floor(200 + Math.random() * 250);
+    const hoehe = Math.floor(150 + Math.random() * 150);
+
+    const popup = document.createElement('div');
+    popup.className = 'popup-window';
+    popup.style.width = `${breite}px`;
+    popup.style.height = `${hoehe}px`;
+    popup.style.backgroundColor = farben[Math.floor(Math.random() * farben.length)];
+
+    let pX = klickX - (breite / 2);
+    let pY = klickY - (hoehe / 2);
+    popup.style.left = `${pX < 10 ? 10 : pX}px`;
+    popup.style.top = `${pY < 10 ? 10 : pY}px`;
+
+    popup.innerHTML = `
+        <div class="popup-header"><span>ALERT</span><div class="popup-close-box">[X]</div></div>
+        <div class="popup-body">${texte[Math.floor(Math.random() * texte.length)]}</div>
+    `;
+
+    popup.querySelector('.popup-close-box').addEventListener('click', () => {
+        popup.style.transform = 'scale(0.8)';
+        popup.style.opacity = '0';
+        setTimeout(() => popup.remove(), 100);
+    });
+
+    document.body.appendChild(popup);
+}
+
+window.addEventListener('DOMContentLoaded', initialisiereSeite);
+    </script>
+</body>
+</html>
