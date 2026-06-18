@@ -14,9 +14,9 @@
       --accent:    #3a7d44;   /* sattes Grün */
       /* (?) Diese drei Farben sind für Text/Links/Button viel zu blass.
              Kontrast zum weißen Hintergrund liegt deutlich unter 4,5:1. */
-      --muted:     #b3b3b3;   /* (?) zu blass für Fließtext */
+      --muted:     #333;   /* (?) zu blass für Fließtext */
       --link:      #9ad0a3;   /* (?) zu blass für Links */
-      --btn-faint: #a8d3ae;   /* (?) zu blass für den Button */
+      --btn-faint: #2f6b39;   /* (?) zu blass für den Button */
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -24,7 +24,6 @@
     /* (?) Der sichtbare Fokus-Rahmen wird hier für ALLE Elemente entfernt.
            Tastatur-Nutzer sehen dann nicht mehr, wo sie gerade sind.
            Diese Regel muss weg – stattdessen ein klar sichtbarer Fokus. */
-    *:focus { outline: none; }
 
     body {
       font-family: system-ui, sans-serif;
@@ -114,6 +113,7 @@
       font-weight: 700;
       cursor: pointer;
       user-select: none;
+      border = none;
     }
 
     /* „Link" ist in Wahrheit nur ein gestyltes span */
@@ -157,38 +157,43 @@
       color: var(--muted);     /* (?) zu blasser Text */
       font-size: .85rem;
     }
+    *.focus {
+      outline: 2px solid red;
+      outline-offset: 4px;
+      border-radius: 2px;
+    }
   </style>
 </head>
 <body>
 
   <!-- (?) Das hier ist die Kopfzeile mit Navigation.
            Welche echten Landmarks (header, nav) gehören hier statt der divs? -->
-  <div class="top-bar">
-    <div class="logo">Pflanzenglück</div>
-    <div>
+  <header class="top-bar">
+    <h1 class="logo">Pflanzenglück</h1>
+    <nav>
       <!-- (?) Navigation als Liste von echten Links (<a href>) statt klickbarer span/div.
                Per Maus funktioniert das hier zwar (onclick), aber per Tab ist nichts
                erreichbar – genau das ist die Barriere. -->
       <ul class="menu">
-        <span class="fake-link" onclick="location.href='02-a11y-fix.html'">Start</span>
-        <span class="fake-link" onclick="location.href='02-a11y-fix.html'">Pflanzen</span>
-        <span class="fake-link" onclick="location.href='warenkorb.html'">Warenkorb</span>
+        <a class="fake-link" href='02-a11y-fix.html'>Start</a>
+        <a class="fake-link" href='02-a11y-fix.html'>Pflanzen</a>
+        <a class="fake-link" href='warenkorb.html'>Warenkorb</a>
       </ul>
-    </div>
-  </div>
+    </nav>
+  </header>
 
   <!-- (?) Das ist der Hauptinhalt der Seite. Welche Landmark fehlt? -->
-  <div class="wrap">
+  <main class="wrap">
 
     <!-- (?) Das ist die wichtigste Überschrift der Seite.
              Welche Ebene der Überschriften-Hierarchie gehört hierher? -->
-    <div class="big-title">Monstera Deliciosa</div>
+    <h1 class="big-title">Monstera Deliciosa</h1>
 
     <div class="product">
       <div>
         <!-- (?) Das Produktbild trägt Information.
                  Es braucht einen aussagekräftigen alt-Text. -->
-        <img src="https://picsum.photos/seed/monstera/560/560">
+        <img src="https://picsum.photos/seed/monstera/560/560" alt="Produktbild">
       </div>
       <div>
         <div class="price">29,90 €</div>
@@ -199,50 +204,53 @@
 
         <!-- (?) Das soll ein echter Button sein, der per Tab erreichbar
                  und mit Enter/Leertaste auslösbar ist – kein div. -->
-        <div class="fake-btn" onclick="alert('In den Warenkorb gelegt!')">
+        <button class="fake-btn" onclick="alert('In den Warenkorb gelegt!')">
           In den Warenkorb
-        </div>
+        </button>
       </div>
     </div>
 
     <!-- (?) Zweitwichtigste Überschrift – passende Ebene wählen. -->
-    <div class="sub-title">Newsletter abonnieren</div>
+    <h2 class="sub-title">Newsletter abonnieren</h2>
 
     <div class="form-card">
       <!-- (?) Jedes Eingabefeld braucht ein technisch verknüpftes <label>
                (for / id) – ein placeholder allein reicht nicht. -->
       <div class="field required">
-        <input type="text" placeholder="Vorname">
+        <label for="firstname">Vorname*</label>
+        <input type="text" id="firstname" requiredplaceholder="Vorname">
       </div>
       <div class="field required">
-        <input type="email" placeholder="E-Mail-Adresse">
+        <label for="email">E-Mail-Adresse*</label>
+        <input type="email" id="email" required placeholder="E-Mail-Adresse">
+        <label></label>
       </div>
 
       <!-- (?) Das ist ein klickbares span statt eines echten Buttons. -->
-      <span class="fake-btn" onclick="alert('Abonniert!')">Abonnieren</span>
+      <button class="fake-btn" onclick="alert('Abonniert!')">Abonnieren</button>
 
       <!-- (?) Der Pflichtfeld-Hinweis darf nicht nur über die Farbe laufen.
                Hier fehlt erklärender Text (z. B. „* Pflichtfeld"). -->
-      <p class="hint">Rot umrandete Felder bitte ausfüllen.</p>
+      <p class="hint">* sind Pflichtfelder</p>
     </div>
 
     <!-- (?) Zweitwichtigste Überschrift – passende Ebene wählen. -->
-    <div class="sub-title">Mehr erfahren</div>
+    <h2 class="sub-title">Mehr erfahren</h2>
     <p class="desc">
       Alles über Standort, Gießen und Umtopfen findest du in unserem Pflegeguide.
       <!-- (?) „Hier klicken" sagt aus dem Kontext gerissen nichts aus.
                Formuliere einen verständlichen Linktext. -->
-      <span class="fake-link" onclick="location.href='#'">Hier klicken</span>
+      <a class="fake-link" href='#'>Pflegeguide</a>
     </p>
 
-  </div>
+  </main>
 
   <!-- (?) Welche Landmark gehört um die Fußzeile? -->
   <div>
     <footer>
       <!-- (?) Dieses Bild ist rein dekorativ und soll von Screenreadern
                ignoriert werden – es braucht ein leeres alt="". -->
-      <img src="https://picsum.photos/seed/leaf/40/40" width="20" height="20">
+      <img src="https://picsum.photos/seed/leaf/40/40" alt="" width="20" height="20">
       © 2026 Pflanzenglück
     </footer>
   </div>
